@@ -7,9 +7,18 @@ import java.util.Scanner;
 public class Students {
 
     public static void main(String args[]) {
+        /** See Student.java class */
         Student stud = new Student();
-        Scanner scnr = new Scanner(System.in);
-        System.out.println("Enter Student No:");
+
+        /** Declare the scanner to get user input */
+        Scanner scanner = new Scanner(System.in);
+
+        /** Prompt user for the input */
+        System.out.print("Enter Student No: ");
+
+        /** Retrieve user input */
+        String snInput = scanner.nextLine();
+
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader("StudentData.csv"));
@@ -17,9 +26,11 @@ public class Students {
             String row = "";
             String headerLine = reader.readLine();
             while (((row = reader.readLine())) !=null) {
+                /** Split the row first by comma before trying to check studentData */
+                String[] studentData = row.split(",");
 
-                if (snInput == studentData[0]) {
-                    String[] studentData = row.split(",");
+                /** Compare user input with first column per row */
+                if (snInput.equals(studentData[0])) {
                     stud.studentNo = studentData[0];
                     stud.studentName = studentData[1];
                     stud.section = studentData[2].charAt(0);
